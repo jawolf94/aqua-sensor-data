@@ -33,15 +33,23 @@ while True:
 # Specify pin 18 as an output pin
 GPIO.setup(pin_number,GPIO.OUT)
 
-# Turn LED On/Off unit user specifies
-print("Press any key to end test...")
-while input() == "":    
-    # Turn on the LED by setting pin 18 to high (3.3v)
-    print("LED On.")
-    GPIO.output(pin_number,GPIO.HIGH)
-    time.sleep(1)
+# Turn LED On/Off unit user end the test
+print("Press Ctrl+C at any time to end the test...")
+try:
+    while True:    
+        # Turn on the LED by setting pin 18 to high (3.3v)
+        print("LED On.")
+        GPIO.output(pin_number,GPIO.HIGH)
+        time.sleep(1)
 
-    # Turn off LED by setting pin to Low (0v)
-    print("LED Off.")
-    GPIO.output(pin_number,GPIO.LOW)
+        # Turn off LED by setting pin to Low (0v)
+        print("LED Off.")
+        GPIO.output(pin_number,GPIO.LOW)
+        time.sleep(1)
+
+    except KeyboardInterrupt:
+        # Handle Keyboard interupt to gracefully exit
+        print("Test Ended.")
+        break
+
 
