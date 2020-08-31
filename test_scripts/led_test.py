@@ -36,7 +36,12 @@ GPIO.setup(pin_number,GPIO.OUT)
 # Turn LED On/Off unit user end the test
 print("Press Ctrl+C at any time to end the test...")
 try:
-    while True:    
+    loop_num = 0
+    while True:
+        # Increase Iteration Number and print header
+        loop_num += 1
+        print(">>>>>Test Number {0}<<<<<".format(loop_num))
+     
         # Turn on the LED by setting pin 18 to high (3.3v)
         print("LED On.")
         GPIO.output(pin_number,GPIO.HIGH)
@@ -47,9 +52,9 @@ try:
         GPIO.output(pin_number,GPIO.LOW)
         time.sleep(1)
 
-    except KeyboardInterrupt:
-        # Handle Keyboard interupt to gracefully exit
-        print("Test Ended.")
-        break
+except KeyboardInterrupt:
+    # Handle Keyboard interupt to gracefully exit
 
-
+    #Turn GPIO Pin off before ending script
+    GPIO.output(pin_number,GPIO.LOW)
+    print("\nTest Ended.")
