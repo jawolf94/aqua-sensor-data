@@ -6,21 +6,42 @@ import time
     Important: Script must be run with "sudo" command on Raspberry Pi to execute as expected
  """
 
-# Specify Broadcom (BCM) SOC channel designation
-GPIO.setmode(GPIO.BCM)
 
-# Disable warnings 
+# Specify Broadcom (BCM) SOC channel designation & disbale warnings
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+
+# List of invalid GPIO Pin selections
+bad_pins = []
+
+# Prompt user for control pin, must be a valid GPIO pin for Raspberry Pi 0
+while True:
+    try:
+        # Get pin number from the user.
+        pin_number = int(input("Enter a pin to test: "))
+    except ValueError:
+        # Catch exception and restart loop if user's selection is invalid
+        print("Input must be an integer.")
+        continue
+
+    if(pin_number > 1 and pin_number < 27):
+        break
+    else:
+        print("Input must be between 2-26")
+
 # Specify pin 18 as an output pin
-GPIO.setup(18,GPIO.OUT)
+GPIO.setup(pin_number,GPIO.OUT)
 
-# Turn on the LED by setting pin 18 to high (3.3v)
-print("LED On.")
-GPIO.output(18,GPIO.HIGH)
-time.sleep(1)
+# Turn LED On/Off unit user specifies
+print("Press any key to end test...")
+while input() == "":    
+    # Turn on the LED by setting pin 18 to high (3.3v)
+    print("LED On.")
+    GPIO.output(pin_number,GPIO.HIGH)
+    time.sleep(1)
 
-# Turn off LED by setting pin to Low (0v)
-print("LED Off.")
-GPIO.output(18,GPIO.LOW)
+    # Turn off LED by setting pin to Low (0v)
+    print("LED Off.")
+    GPIO.output(pin_number,GPIO.LOW)
 
