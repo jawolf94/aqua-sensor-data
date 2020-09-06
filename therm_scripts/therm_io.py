@@ -18,6 +18,9 @@ def read_temp_raw():
     f.close()
     return lines
 
+""" Reads temperature data from raw data.
+    Temperature value is returned in Fahrenheit
+"""
 def read_temp():
 
     # Read current data in file
@@ -43,3 +46,8 @@ def read_temp():
         temp = temp * (9.0/5.0) + 32.0
     
         return temp
+
+# Loops read operations until program is stopped.
+while True:
+    print(read_temp())
+    sleep(2)
