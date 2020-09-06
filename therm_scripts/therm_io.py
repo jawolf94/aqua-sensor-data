@@ -28,7 +28,7 @@ def read_temp():
 
     # Loop until a successful reading occurs
     # The last 3 characters of the first line are 'YES' when reading is successful
-    while lines[0].strip[-3:] != 'YES':
+    while lines[0].strip()[-3:] != 'YES':
         sleep(0.2)
         lines = read_temp_raw()
 
@@ -40,7 +40,7 @@ def read_temp():
         temp = lines[1].strip()[has_temp +2:]
 
         # Convert raw data to Celcius
-        temp = temp/ 1000.0
+        temp = float(temp)/ 1000.0
 
         # Convert to Fahrenheit
         temp = temp * (9.0/5.0) + 32.0
