@@ -1,0 +1,6 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+# This .gitignore file should be placed at the root of your Unity project directory
+
+# Ignore VSCode Settings
+.vscode/
