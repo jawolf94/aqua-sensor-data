@@ -1,0 +1,1 @@
+from .therm_read_test import execute_therm_read_test

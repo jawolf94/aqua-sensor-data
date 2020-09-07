@@ -1,20 +1,20 @@
 import os
 
-class TempIO():
+class TempIO:
 
     """ Initalizes Temp IO Class"""
-    def ___init__(self):
+    def __init__(self):
         # Load drivers for DB18B20
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')
 
         # File where sensor data is written
-        self.__therm_driver = '/sys/bus/w1/devices/28-0301a2795434/w1_slave'
+        self.therm_driver = '/sys/bus/w1/devices/28-0301a2795434/w1_slave'
 
     """ Reads raw data from w1_driver"""
     def __read_temp_raw(self):
         # Open files and get all lines
-        f = open(self.__therm_driver, 'r')
+        f = open(self.therm_driver, 'r')
         lines = f.readlines()
 
         # Close file and return lines
