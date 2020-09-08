@@ -37,6 +37,8 @@ def collect_data():
             print_str = print_str.format(therm_num, time, cur_reading)
             print(print_str)
 
+            sleep(5)
+
     except BufferError:
         # Catch read error from sensor
         print("Error: Could not read temp data from thermometer")
