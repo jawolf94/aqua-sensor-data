@@ -18,13 +18,13 @@ class SQLDB:
 
     """ Creates Tables required for storing sensor data"""
     def __create_sensor_tables(self):
-        
+
         try:
             # Try to establist a connection and make tables
 
             # Create Thermomether Table
             connection = self.__connect()
-            connection.cursor().execute("CREATE TABLE IF NOT EXISTS temperature (timestamp datetime2 PRIMARY KEY, thermometer_number int, temperature float)")
+            connection.cursor().execute("CREATE TABLE IF NOT EXISTS temperature ([timestamp] timestamp PRIMARY KEY, thermometer_number int, temperature float)")
             connection.commit()
 
         except Exception as error:
@@ -43,11 +43,10 @@ class SQLDB:
             connection = self.__connect()
 
             # Set-up string for insertion
-            sql_statement = "INSERT INTO temperature VALUES ({0},{1},{2});"
-            sql_statement = sql_statement.format(timestamp, therm_num, temp)
+            sql_statement = "INSERT INTO temperature(timestamp, thermometer_number, temperature) VALUES (?, ?, ?);"
 
             # Execute statement
-            connection.cursor().execute(sql_statement)
+            connection.cursor().execute(sql_statement, (timestamp, therm_num, temp))
             connection.commit()
 
         except Exception as error:

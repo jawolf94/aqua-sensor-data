@@ -7,3 +7,6 @@
 
 # Ignore python cache files
 *__pycache__*
+
+#Ignore SQL DBs
+*.db
