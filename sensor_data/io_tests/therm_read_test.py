@@ -22,3 +22,6 @@ def execute_therm_read_test():
         # Gracefully end the test if user ends the script.
         print("\nTest Ended.")
 
+
+if __name__ == '__main__':
+    execute_therm_read_test()
